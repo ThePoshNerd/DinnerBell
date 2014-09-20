@@ -39,8 +39,8 @@ Apperyio.AppPages = [{
     "name": "MenuPage",
     "location": "MenuPage.html"
 }, {
-    "name": "OrderTracking",
-    "location": "OrderTracking.html"
+    "name": "dollSendEmail",
+    "location": "dollSendEmail.html"
 }];
 
 MenuPage_js = function(runBeforeShow) { /* Object & array with components "name-to-id" mapping */

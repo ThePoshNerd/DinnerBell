@@ -1,0 +1,110 @@
+
+/* Define default spinner */
+.ui-icon-loading {
+	background: url("files/resources/lib/jquerymobile/1.3.2/images/ajax-loader.gif") repeat scroll 0 0 / 46px 46px transparent!important;
+}
+/* backBtn */
+#foodDetailPage_backBtn {
+
+}
+.ui-btn.foodDetailPage_backBtn {
+
+}
+/* mobilecontainer1 */
+.ui-content.foodDetailPage_mobilecontainer1 {
+	padding: 15px 15px 15px 15px;
+}
+/* mobileimage_1 */
+.foodDetailPage_mobileimage_1 {
+	margin: 4px 0px 4px 0px;
+	width: 250px; height: 239px;
+	display: block;
+}
+/* spacer_21 */
+.foodDetailPage_spacer_21 {
+	width: 260px; height: 21px;
+	margin: 4px 0px 4px 0px;
+}
+/* itemLabel */
+.foodDetailPage_itemLabel {
+	text-decoration: none; font-weight: bold; text-align: center; font-family: Helvetica; font-size: 20px;
+	margin: 4px 0px 4px 0px;
+	word-wrap: break-word;
+}
+/* mobilegrid_6 */
+.foodDetailPage_mobilegrid_6 {
+	height: auto;
+	width:100%;
+	margin: 4px 0px 4px 0px;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+.foodDetailPage_mobilegrid_6 > tr > td {
+	vertical-align: top;
+}
+.foodDetailPage_mobilegrid_6_row_0, .foodDetailPage_mobilegrid_6_row_0 > td {
+	height: 30px
+}
+/* mobilegridcell_7 */
+.foodDetailPage_mobilegridcell_7 {
+	height:30px !important;
+	width:208px;
+	padding: 2px 2px 2px 2px;
+}
+.foodDetailPage_mobilegridcell_7 > .cell-wrapper {
+	padding: 0;
+	margin: 0;
+}
+/* mobilegridcell_17 */
+.foodDetailPage_mobilegridcell_17 {
+	height:30px !important;
+	width:auto;
+	padding: 2px 2px 2px 2px;
+}
+.foodDetailPage_mobilegridcell_17 > .cell-wrapper {
+	padding: 0;
+	margin: 0;
+}
+/* priceLabel */
+.foodDetailPage_priceLabel {
+	text-decoration: none; font-weight: normal; font-style: italic; text-align: left; font-family: Helvetica; font-size: 16px;
+	margin: 4px 0px 4px 0px;
+	word-wrap: break-word;
+}
+/* descriptionLabel */
+.foodDetailPage_descriptionLabel {
+	text-decoration: none; font-weight: normal; text-align: left; font-family: Helvetica; font-size: 16px;
+	margin: 4px 0px 4px 0px;
+	word-wrap: break-word;
+}
+/* toInput */
+.foodDetailPage_toInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* fromInput */
+.foodDetailPage_fromInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* subjectInput */
+.foodDetailPage_subjectInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* messageInput */
+.foodDetailPage_messageInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* mobilebutton_20 */
+#foodDetailPage_mobilebutton_20 {
+
+}
+.ui-btn.foodDetailPage_mobilebutton_20 {
+	margin: 4px 5px 4px 5px;
+}
+/* mobilefooter */
+.foodDetailPage_mobilefooter {
+	min-height:38px;
+}

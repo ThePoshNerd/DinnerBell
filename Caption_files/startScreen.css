@@ -1,0 +1,55 @@
+
+/* Define default spinner */
+.ui-icon-loading {
+	background: url("files/resources/lib/jquerymobile/1.3.2/images/ajax-loader.gif") repeat scroll 0 0 / 46px 46px transparent!important;
+}
+/* mobilecontainer1 */
+.ui-content.startScreen_mobilecontainer1 {
+	padding: 15px 15px 15px 15px;
+}
+/* dollsBtn */
+#startScreen_dollsBtn {
+
+}
+.ui-btn.startScreen_dollsBtn {
+	margin: 4px 5px 4px 5px;
+}
+/* stuffedAnimalsBtn */
+#startScreen_stuffedAnimalsBtn {
+
+}
+.ui-btn.startScreen_stuffedAnimalsBtn {
+	margin: 4px 5px 4px 5px;
+}
+/* gamesBtn */
+#startScreen_gamesBtn {
+
+}
+.ui-btn.startScreen_gamesBtn {
+	margin: 4px 5px 4px 5px;
+}
+/* petBtn */
+#startScreen_petBtn {
+
+}
+.ui-btn.startScreen_petBtn {
+	margin: 4px 5px 4px 5px;
+}
+/* carsBtn */
+#startScreen_carsBtn {
+
+}
+.ui-btn.startScreen_carsBtn {
+	margin: 4px 5px 4px 5px;
+}
+/* ridingToysBtn */
+#startScreen_ridingToysBtn {
+
+}
+.ui-btn.startScreen_ridingToysBtn {
+	margin: 4px 5px 4px 5px;
+}
+/* mobilefooter1 */
+.startScreen_mobilefooter1 {
+	min-height:38px;
+}

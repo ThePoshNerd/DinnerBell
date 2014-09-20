@@ -27,20 +27,14 @@ function setDetailContent(pageUrl) {
 }
 
 Apperyio.AppPages = [{
-    "name": "aboutPage",
-    "location": "aboutPage.html"
-}, {
-    "name": "payedDollPage",
-    "location": "payedDollPage.html"
-}, {
-    "name": "foodDetailPage",
-    "location": "foodDetailPage.html"
-}, {
     "name": "MenuPage",
     "location": "MenuPage.html"
 }, {
     "name": "OrderTracking",
     "location": "OrderTracking.html"
+}, {
+    "name": "foodDetailPage",
+    "location": "foodDetailPage.html"
 }];
 
 OrderTracking_js = function(runBeforeShow) { /* Object & array with components "name-to-id" mapping */
@@ -141,7 +135,7 @@ OrderTracking_js = function(runBeforeShow) { /* Object & array with components "
         }, {
             'PATH': ['appery-key'],
             'HEADER': true,
-            'ATTR': '1411251947631'
+            'ATTR': '1411254427792'
         }, {
             'PATH': ['appery-rest'],
             'HEADER': true,

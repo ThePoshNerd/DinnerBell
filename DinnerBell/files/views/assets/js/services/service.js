@@ -15,6 +15,14 @@ var DinnerBellDatabase_settings = {
  */
 var CameraService = new Apperyio.CameraService({});
 
+var DinnerBellDatabase_House_Specials_read_service = new Apperyio.RestService({
+    'url': '{database_url}/collections/House%20Specials/{_id}',
+    'dataType': 'json',
+    'type': 'get',
+
+    'serviceSettings': DinnerBellDatabase_settings
+});
+
 var SendGrid_MailSend = new Apperyio.RestService({
     'url': 'https://api.appery.io/rest/1/proxy/tunnel',
     'dataType': 'json',
@@ -25,14 +33,6 @@ var SendGrid_MailSend = new Apperyio.RestService({
 
 var DinnerBellDatabase_House_Specials_list_service = new Apperyio.RestService({
     'url': '{database_url}/collections/House%20Specials',
-    'dataType': 'json',
-    'type': 'get',
-
-    'serviceSettings': DinnerBellDatabase_settings
-});
-
-var DinnerBellDatabase_House_Specials_read_service = new Apperyio.RestService({
-    'url': '{database_url}/collections/House%20Specials/{_id}',
     'dataType': 'json',
     'type': 'get',
 

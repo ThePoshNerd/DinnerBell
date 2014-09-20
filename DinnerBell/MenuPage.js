@@ -27,20 +27,14 @@ function setDetailContent(pageUrl) {
 }
 
 Apperyio.AppPages = [{
-    "name": "aboutPage",
-    "location": "aboutPage.html"
-}, {
-    "name": "payedDollPage",
-    "location": "payedDollPage.html"
-}, {
-    "name": "foodDetailPage",
-    "location": "foodDetailPage.html"
-}, {
     "name": "MenuPage",
     "location": "MenuPage.html"
 }, {
     "name": "OrderTracking",
     "location": "OrderTracking.html"
+}, {
+    "name": "foodDetailPage",
+    "location": "foodDetailPage.html"
 }];
 
 MenuPage_js = function(runBeforeShow) { /* Object & array with components "name-to-id" mapping */

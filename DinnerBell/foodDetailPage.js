@@ -27,20 +27,14 @@ function setDetailContent(pageUrl) {
 }
 
 Apperyio.AppPages = [{
-    "name": "aboutPage",
-    "location": "aboutPage.html"
-}, {
-    "name": "payedDollPage",
-    "location": "payedDollPage.html"
-}, {
-    "name": "foodDetailPage",
-    "location": "foodDetailPage.html"
-}, {
     "name": "MenuPage",
     "location": "MenuPage.html"
 }, {
     "name": "OrderTracking",
     "location": "OrderTracking.html"
+}, {
+    "name": "foodDetailPage",
+    "location": "foodDetailPage.html"
 }];
 
 foodDetailPage_js = function(runBeforeShow) { /* Object & array with components "name-to-id" mapping */
@@ -54,6 +48,8 @@ foodDetailPage_js = function(runBeforeShow) { /* Object & array with components 
         'mobilegridcell_17': 'foodDetailPage_mobilegridcell_17',
         'priceLabel': 'foodDetailPage_priceLabel',
         'descriptionLabel': 'foodDetailPage_descriptionLabel',
+        'mobiletextinput_22': 'foodDetailPage_mobiletextinput_22',
+        'spacer_23': 'foodDetailPage_spacer_23',
         'toInput': 'foodDetailPage_toInput',
         'fromInput': 'foodDetailPage_fromInput',
         'subjectInput': 'foodDetailPage_subjectInput',
@@ -88,40 +84,6 @@ foodDetailPage_js = function(runBeforeShow) { /* Object & array with components 
      * Nonvisual components
      */
     var datasources = [];
-
-    loadItemSelected = new Apperyio.DataSource(DinnerBellDatabase_House_Specials_read_service, {
-        'onBeforeSend': function(jqXHR) {
-
-        },
-        'onComplete': function(jqXHR, textStatus) {
-
-            Apperyio.refreshScreenFormElements("foodDetailPage");
-        },
-        'onSuccess': function(data) {},
-        'onError': function(jqXHR, textStatus, errorThrown) {},
-        'responseMapping': [{
-            'PATH': ['FoodName'],
-            'ID': 'itemLabel',
-            'ATTR': '@'
-        }, {
-            'PATH': ['FoodPrice'],
-            'ID': 'priceLabel',
-            'ATTR': '@'
-        }],
-        'requestMapping': [{
-            'PATH': ['X-Appery-Database-Id'],
-            'TYPE': 'STRING',
-            'HEADER': true,
-            'ATTR': '{database_id}'
-        }, {
-            'PATH': ['_id'],
-            'TYPE': 'STRING',
-            'ID': '___local_storage___',
-            'ATTR': 'listID'
-        }]
-    });
-
-    datasources.push(loadItemSelected);
 
     sendMail = new Apperyio.DataSource(SendGrid_MailSend, {
         'onBeforeSend': function(jqXHR) {
@@ -173,7 +135,7 @@ foodDetailPage_js = function(runBeforeShow) { /* Object & array with components 
         }, {
             'PATH': ['appery-key'],
             'HEADER': true,
-            'ATTR': '1411251947577'
+            'ATTR': '1411254427728'
         }, {
             'PATH': ['appery-rest'],
             'HEADER': true,
@@ -182,6 +144,44 @@ foodDetailPage_js = function(runBeforeShow) { /* Object & array with components 
     });
 
     datasources.push(sendMail);
+
+    restservice1 = new Apperyio.DataSource(DinnerBellDatabase_House_Specials_read_service, {
+        'onBeforeSend': function(jqXHR) {
+
+        },
+        'onComplete': function(jqXHR, textStatus) {
+
+            Apperyio.refreshScreenFormElements("foodDetailPage");
+        },
+        'onSuccess': function(data) {},
+        'onError': function(jqXHR, textStatus, errorThrown) {},
+        'responseMapping': [{
+            'PATH': ['FoodName'],
+            'ID': 'itemLabel',
+            'ATTR': '@'
+        }, {
+            'PATH': ['FoodPrice'],
+            'ID': 'priceLabel',
+            'ATTR': '@'
+        }, {
+            'PATH': ['Images'],
+            'ID': 'mobileimage_1',
+            'ATTR': 'src'
+        }],
+        'requestMapping': [{
+            'PATH': ['X-Appery-Database-Id'],
+            'TYPE': 'STRING',
+            'HEADER': true,
+            'ATTR': '{database_id}'
+        }, {
+            'PATH': ['_id'],
+            'TYPE': 'STRING',
+            'ID': '___local_storage___',
+            'ATTR': 'listID'
+        }]
+    });
+
+    datasources.push(restservice1);
 
     /*
      * Events and handlers
@@ -199,7 +199,7 @@ foodDetailPage_js = function(runBeforeShow) { /* Object & array with components 
     screen_CDCF_onLoad = foodDetailPage_onLoad = function() {
         screen_CDCF_elementsExtraJS();
         try {
-            loadItemSelected.execute({})
+            restservice1.execute({})
         } catch (ex) {
             console.log(ex.name + '  ' + ex.message);
             hideSpinner();

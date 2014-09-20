@@ -46,6 +46,7 @@ MenuPage_js = function(runBeforeShow) { /* Object & array with components "name-
         'mobilegrid_16': 'MenuPage_mobilegrid_16',
         'mobilegridcell_17': 'MenuPage_mobilegridcell_17',
         'titleLabel': 'MenuPage_titleLabel',
+        'mobileimage_39': 'MenuPage_mobileimage_39',
         'mobilegridcell_21': 'MenuPage_mobilegridcell_21',
         'priceLabel': 'MenuPage_priceLabel',
         'mobilegridcell_38': 'MenuPage_mobilegridcell_38',
@@ -80,7 +81,7 @@ MenuPage_js = function(runBeforeShow) { /* Object & array with components "name-
      */
     var datasources = [];
 
-    FoodListService = new Apperyio.DataSource(DinnerBellDatabase_House_Specials_list_service, {
+    restservice2 = new Apperyio.DataSource(DinnerBellDatabase_House_Specials_list_service, {
         'onBeforeSend': function(jqXHR) {
 
         },
@@ -102,9 +103,17 @@ MenuPage_js = function(runBeforeShow) { /* Object & array with components "name-
                 'ID': 'priceLabel',
                 'ATTR': '@'
             }, {
+                'PATH': ['Images'],
+                'ID': 'mobileimage_39',
+                'ATTR': 'src'
+            }, {
                 'PATH': ['_id'],
                 'ID': 'itemIDLabel',
                 'ATTR': '@'
+            }, {
+                'PATH': ['_id'],
+                'ID': '___local_storage___',
+                'ATTR': 'listID'
             }]
         }],
         'requestMapping': [{
@@ -115,7 +124,7 @@ MenuPage_js = function(runBeforeShow) { /* Object & array with components "name-
         }]
     });
 
-    datasources.push(FoodListService);
+    datasources.push(restservice2);
 
     /*
      * Events and handlers
@@ -133,7 +142,7 @@ MenuPage_js = function(runBeforeShow) { /* Object & array with components "name-
     screen_2331_onLoad = MenuPage_onLoad = function() {
         screen_2331_elementsExtraJS();
         try {
-            FoodListService.execute({})
+            restservice2.execute({})
         } catch (ex) {
             console.log(ex.name + '  ' + ex.message);
             hideSpinner();

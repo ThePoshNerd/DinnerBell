@@ -40,6 +40,7 @@
 .MenuPage_itemIDLabel {
 	text-decoration: none; font-weight: normal; font-style: italic; text-align: left; font-family: Helvetica; font-size: 16px;
 	margin: 4px 0px 4px 0px;
+	display: none;
 	word-wrap: break-word;
 }
 /* mobilegrid_16 */
@@ -71,6 +72,12 @@
 	text-decoration: none; font-weight: normal; font-style: italic; text-align: left; font-family: Helvetica; font-size: 16px;
 	margin: 4px 0px 4px 0px;
 	word-wrap: break-word;
+}
+/* mobileimage_39 */
+.MenuPage_mobileimage_39 {
+	margin: 4px 0px 4px 0px;
+	width: 100px; height: 100px;
+	display: block;
 }
 /* mobilegridcell_21 */
 .MenuPage_mobilegridcell_21 {

@@ -48,7 +48,11 @@ OrderTracking_js = function(runBeforeShow) { /* Object & array with components "
         'spacer_8': 'OrderTracking_spacer_8',
         'foodStatus': 'OrderTracking_foodStatus',
         'orderLabel': 'OrderTracking_orderLabel',
-        'mobilebutton2': 'OrderTracking_mobilebutton2'
+        'mobilebutton2': 'OrderTracking_mobilebutton2',
+        'toInput': 'OrderTracking_toInput',
+        'fromInput': 'OrderTracking_fromInput',
+        'subjectInput': 'OrderTracking_subjectInput',
+        'textInput': 'OrderTracking_textInput'
     };
 
     if ("n2id" in window && window.n2id !== undefined) {
@@ -99,6 +103,26 @@ OrderTracking_js = function(runBeforeShow) { /* Object & array with components "
         'onError': function(jqXHR, textStatus, errorThrown) {},
         'responseMapping': [],
         'requestMapping': [{
+            'PATH': ['to'],
+            'TYPE': 'STRING',
+            'ID': 'toInput',
+            'ATTR': 'value'
+        }, {
+            'PATH': ['subject'],
+            'TYPE': 'STRING',
+            'ID': 'subjectInput',
+            'ATTR': 'value'
+        }, {
+            'PATH': ['text'],
+            'TYPE': 'STRING',
+            'ID': 'textInput',
+            'ATTR': 'value'
+        }, {
+            'PATH': ['from'],
+            'TYPE': 'STRING',
+            'ID': 'fromInput',
+            'ATTR': 'value'
+        }, {
             'PATH': ['api_user'],
             'TYPE': 'STRING',
             'ATTR': '{api_user}'
@@ -117,7 +141,7 @@ OrderTracking_js = function(runBeforeShow) { /* Object & array with components "
         }, {
             'PATH': ['appery-key'],
             'HEADER': true,
-            'ATTR': '1411251331070'
+            'ATTR': '1411251947631'
         }, {
             'PATH': ['appery-rest'],
             'HEADER': true,
@@ -142,6 +166,12 @@ OrderTracking_js = function(runBeforeShow) { /* Object & array with components "
     // On Load
     screen_B86C_onLoad = OrderTracking_onLoad = function() {
         screen_B86C_elementsExtraJS();
+        try {
+            sendgrid_mailsend.execute({})
+        } catch (ex) {
+            console.log(ex.name + '  ' + ex.message);
+            hideSpinner();
+        };
 
         // TODO fire device events only if necessary (with JS logic)
         OrderTracking_deviceEvents();

@@ -173,7 +173,7 @@ foodDetailPage_js = function(runBeforeShow) { /* Object & array with components 
         }, {
             'PATH': ['appery-key'],
             'HEADER': true,
-            'ATTR': '1411251331020'
+            'ATTR': '1411251947577'
         }, {
             'PATH': ['appery-rest'],
             'HEADER': true,
@@ -258,12 +258,6 @@ foodDetailPage_js = function(runBeforeShow) { /* Object & array with components 
         $('#foodDetailPage_mobilecontainer1 [name="mobilebutton_20"]').die().live({
             click: function() {
                 if (!$(this).attr('disabled')) {
-                    try {
-                        sendMail.execute({})
-                    } catch (ex) {
-                        console.log(ex.name + '  ' + ex.message);
-                        hideSpinner();
-                    };
                     setTimeout(function() {
                         window.location = 'OrderTracking.html';
                     }, 0);

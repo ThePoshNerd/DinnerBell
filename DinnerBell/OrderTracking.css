@@ -31,6 +31,26 @@
 .ui-btn.OrderTracking_mobilebutton2 {
 	margin: 4px 5px 4px 5px;
 }
+/* toInput */
+.OrderTracking_toInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* fromInput */
+.OrderTracking_fromInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* subjectInput */
+.OrderTracking_subjectInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* textInput */
+.OrderTracking_textInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
 /* mobilefooter1 */
 .OrderTracking_mobilefooter1 {
 	min-height:38px;

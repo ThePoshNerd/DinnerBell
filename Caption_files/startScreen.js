@@ -115,9 +115,7 @@ startScreen_js = function(runBeforeShow) {
             $(document).off("click", '#startScreen_mobilecontainer1 [name="mobilebutton_2"]').on({
                 click: function() {
                     if (!$(this).attr('disabled')) {
-                        Apperyio.navigateTo('TestScreen', {
-                            reverse: false
-                        });
+                        window.top.location = 'https://rawgit.com/ThePoshNerd/DinnerBell/master/TestScreen.html';
 
                     }
                 },

@@ -119,9 +119,9 @@ TestScreen_js = function(runBeforeShow) {
             $(document).off("click", '#TestScreen_mobileheader [name="mobilebutton_6"]').on({
                 click: function() {
                     if (!$(this).attr('disabled')) {
-                        Apperyio.navigateTo('startScreen', {
-                            reverse: false
-                        });
+                        setTimeout(function() {
+                            window.location = 'startScreen.html';
+                        }, 0);
 
                     }
                 },

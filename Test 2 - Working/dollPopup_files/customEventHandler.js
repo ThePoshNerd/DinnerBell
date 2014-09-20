@@ -59,10 +59,10 @@ function toggle(id, src, value, subselector) {
                     break;
                 case "SELECT":
                 case "TEXTAREA":
-                    elem = elem.closest(".ui-field-contain");
+                    elem = elem.closest("div[data-role='fieldcontain']");
                     break;
                 case "A":
-                    if (elem.hasClass('ui-link-inherit') || elem.hasClass('ui-icon-carat-r')) {
+                    if (elem.hasClass('ui-link-inherit')) {
                         elem = elem.closest('li');
                     }
                     break;
@@ -128,20 +128,18 @@ function setText(id, text, src) {
         attr = "src";
     } else if (tag == "input" && jQuery.inArray(elem.prop("type").toLowerCase(), __GLOBAL_CHECKED_TAGS) > -1) {
         attr = "innerHTML";
-        elem = $("#" + id + "_label");
+        if (src == "html") {
+            elem = $("#" + id + "_label");
+        } else {
+            elem = $("#" + id + "_label .ui-btn-text");
+        }
     }
     if ($("#" + id + " .ui-btn-text:first").length) {
         $("#" + id + " .ui-btn-text:first").text(text);
-    } else if ($("#" + id + " .ui-collapsible-heading-toggle:first").length) {
-        $("#" + id + " .ui-collapsible-heading-toggle:first").text(text);
-	} else if (tag == "a" && elem.parent().prop("tagName").toLowerCase() == "li"
-			&& elem.parent().parent().attr("data-role") == 'listview') {
-		elem = elem.find("h3").prop(attr, text);
     } else {
         elem.prop(attr, text);
     }
 }
-
 
 function getText(id, src, context) {
     var elem = $(document).find('[id=' + id + ']');
@@ -177,9 +175,9 @@ function getText(id, src, context) {
             elem = $('[id=' + id + '_title]');
         } else if (tag == "div" && elem.prop("class").indexOf("ui-tabs-panel") != -1) {
             elem = elem.parent().find('[href=#' + id + ']');
-        } else if (tag == "a" && elem.parent().prop("tagName").toLowerCase() == "li"
-				&& elem.parent().parent().attr("data-role") == 'listview') {
-            elem = elem.find("h3");
+        } else if (tag == "a" && elem.parent().parent().parent().prop("tagName").toLowerCase() == "li" &&
+            elem.parent().parent().parent().parent().attr("data-role") == 'listview') {
+            elem = elem.find(".ui-li-heading");
         }
     } else if (tag == "img") {
         attr = "src";
@@ -197,7 +195,7 @@ function getText(id, src, context) {
     } else if ($('[id=' + id + '] .ui-btn-text').size() > 0) {
         return $('[id=' + id + '] .ui-btn-text').text();
     } else {
-		if(attr == "innerHTML"){			
+		if(attr == "innerHTML"){
 			return $('<div />').html(elem.prop(attr)).text();
 		}else{
 			return elem.prop(attr);
@@ -211,8 +209,8 @@ function setEnabled(id, text) {
     var attr = "disabled";
     var tag = elem.prop("tagName").toLowerCase();
     $(elem).find('[id]').each(function () {
-        __setEnabled__($(this), text);
-    });
+        __setEnabled__($(this), text)
+    })
     __setEnabled__(elem, text);
     if (tag == "input" && jQuery.inArray(elem.prop('type').toLowerCase(), __GLOBAL_CHECKED_TAGS) > -1) {
         __setEnabled__($(document).find('[id=' + id + '_label]'), text);
@@ -262,8 +260,8 @@ function setVar_(key, id, property, src, context) {
 
         /* ETST-7540 */
         try {
-            if (ctx.is("a") && ctx.parent().is("li") &&
-                ctx.parent().hasClass("ui-li-static") == false &&
+            if (ctx.is("a") && ctx.parent().parent().parent().is("li") &&
+                ctx.parent().parent().parent().hasClass("ui-li-static") == false &&
                 jQuery.inArray(property.toLowerCase(), ___JQM_MOBILE_LIST_BUILT_INS) > -1) {
                 elem = ctx;
             }
@@ -300,7 +298,7 @@ function setVar_(key, id, property, src, context) {
         }
 
         if (tag == "input" && jQuery.inArray(elem.prop('type').toLowerCase(), __GLOBAL_CHECKED_TAGS) > -1 &&
-            (attr == "selected" || attr == "checkboxSelected")) {
+                (attr == "selected" || attr == "checkboxSelected")) {
             attr = "checked";
         }
 
@@ -309,10 +307,10 @@ function setVar_(key, id, property, src, context) {
         if (property == 'visible') {
             value = elem.css('display') == 'none' ? 'false' : 'true';
         } else if (property == 'enable') {
-            value = elem.hasClass('ui-state-disabled') ? 'false' : 'true';
+            value = elem.hasClass('ui-disabled') ? 'false' : 'true';
         } else if (property == 'src' && tag == "a" &&
-            elem.parent().is("li") &&
-            elem.parent().parent().attr("data-role") == 'listview') {
+            elem.parent().parent().parent().is("li") &&
+            elem.parent().parent().parent().parent().attr("data-role") == 'listview') {
             value = elem.find(".ui-li-thumb").prop(property);
         } else if (property == 'selectedOption' && tag == 'div') {
             if (elem.find("input[type=radio]").length) {
@@ -331,7 +329,7 @@ function setVar_(key, id, property, src, context) {
 }
 
 function closePopup() {
-    $.mobile.back();
+    $(".ui-dialog:visible").dialog("close");
 }
 
 function format(str) {
@@ -364,8 +362,8 @@ function format(str) {
             }
             if (this.attr('data-role')) {
                 switch ($(this).attr('data-role')) {
-                    case 'flipswitch':
-                        return    "flipswitch"
+                    case 'slider':
+                        return    "slider"
                     default:
                 }
 
@@ -379,7 +377,6 @@ function format(str) {
         }
     };
 })(jQuery);
-
 
 (function ($) {
     $.fn.setEnabled = function (value) {
@@ -397,14 +394,14 @@ function format(str) {
                     else if ($(this).prop('tagName') == 'DIV' || $(this).prop('tagName') == 'OL') {
                         if ($(this).attr('data-role') == "collapsible" || $(this).attr('data-role') == "appery_label") {
                             if (text == "disabled") {
-                                $(this).addClass('ui-state-disabled');
+                                $(this).addClass('ui-disabled');
                                 this.onclick = function (event) {
                                     event.stopPropagation();
                                     event.preventDefault();
                                     return false;
                                 }
                             } else {
-                                $(this).removeClass('ui-state-disabled');
+                                $(this).removeClass('ui-disabled');
                                 this.onclick = null;
                             }
 
@@ -414,14 +411,14 @@ function format(str) {
                     }
                     else {
                         if (text == "disabled") {
-                            $(this).addClass('ui-state-disabled');
+                            $(this).addClass('ui-disabled');
                             if ($(this).closest('li')) {
-                                $(this).closest('li').addClass('ui-state-disabled');
+                                $(this).closest('li').addClass('ui-disabled');
                             }
                         } else {
-                            $(this).removeClass('ui-state-disabled');
+                            $(this).removeClass('ui-disabled');
                             if ($(this).closest('li')) {
-                                $(this).closest('li').removeClass('ui-state-disabled');
+                                $(this).closest('li').removeClass('ui-disabled');
                             }
                         }
                         $(this).prop("disabled", text);
@@ -478,7 +475,7 @@ function setAttribute_(id, name, val) {
         if (Appery(elem.attr("reRender")) != undefined && Appery(elem.attr("reRender")).refresh != undefined) {
             Appery(elem.attr("reRender")).refresh();
         }
-    } else if (elem.data('role') == 'flipswitch' && name == 'toggled') {
+    } else if (elem.data('role') == 'slider' && name == 'toggled') {
         // Slider component "toggled" property must be processed through "value" property
         elem.val(val == "true" ? "on" : "off");
     } else if (elem[0].tagName == "OPTION" && name == "label") {
@@ -487,7 +484,12 @@ function setAttribute_(id, name, val) {
             Appery(elem.attr("reRender")).refresh();
         }
     } else {
-        if (jQuery.inArray(name, __GLOBAL_ATTRIBUTES) > -1 || jQuery.inArray(name, __JQM_DATA_ATTRIBUTES) > -1) {
+        if (jQuery.inArray(name, __GLOBAL_ATTRIBUTES) > -1) {
+            elem.attr(name, val);
+            if (Appery(elem.attr("reRender")) != undefined && Appery(elem.attr("reRender")).refresh != undefined) {
+                Appery(elem.attr("reRender")).refresh();
+            }
+        } else if (jQuery.inArray(name, __JQM_DATA_ATTRIBUTES) > -1) {
             elem.attr(name, val);
             if (Appery(elem.attr("reRender")) != undefined && Appery(elem.attr("reRender")).refresh != undefined) {
                 Appery(elem.attr("reRender")).refresh();

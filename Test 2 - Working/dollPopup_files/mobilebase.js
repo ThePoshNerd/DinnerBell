@@ -29,7 +29,7 @@ function resetActivePageContentHeight() {
     aPage = $("." + $.mobile.activePageClass);
 
     // It's OK with dialogue, we don't need extra sizing
-    if (aPage.is("[data-dialog='true']")) return;
+    if (aPage.is("[data-role='dialog']")) return;
 
     aPageContent = aPage.find(".ui-content:eq(0)");
     if (aPage.hasClass("detail-content")) {
@@ -75,7 +75,7 @@ function resetActivePageContentHeight() {
     aPageContent.css("min-height", resultHeight);
 }
 
-$.mobile.document.bind("pagecontainershow", resetActivePageContentHeight);
+$.mobile.document.bind("pageshow", resetActivePageContentHeight);
 $.mobile.window.bind("throttledresize", resetActivePageContentHeight);
 
 // Replacing native jQuery show/hide logic to handle mobileinput
@@ -146,12 +146,3 @@ $(document).on( "popupbeforeposition", "[data-role=popup]", function() {
         $wrapper.css("margin-right", ($wrapper[0].scrollHeight > $wrapper[0].clientHeight) ? "20px" : "0");
     }
 });
-
-/* ETST-20410 */
-if (navigator.userAgent.indexOf("MSIE ") !== -1) {
-    $(document).on("click", ".ui-li-static-container", function() {
-        if (!$(arguments[0].target).is(":focus") || (arguments[0].target == this)){
-            $(this).closest("li").focus(); 
-        }
-    })
-}

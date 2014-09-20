@@ -251,7 +251,7 @@
         }
     });
 
-    var eventHandlerDelegates = ['bind', 'unbind', 'one', 'live', 'die', 'trigger', 'on', 'off'];
+    var eventHandlerDelegates = ['bind', 'unbind', 'one', 'live', 'die', 'trigger'];
     $.each(eventHandlerDelegates, function (idx, methodName) {
         $a.BaseComponent.prototype[methodName] = function () {
             var elts = this.element();
@@ -591,8 +591,8 @@
                 var c = cs.eq(i);
 
                 // Special case with interactive mobilelistitem as a container
-                if (c[0].tagName == "A" && c.parents().eq(1).is("[data-role='listview']")) {
-                    c = c.parents().eq(0);
+                if (c[0].tagName == "A" && c.parents().eq(3).is("[data-role='listview']")) {
+                    c = c.parents().eq(2);
                 }
 
                 if (c[0].tagName) {
@@ -627,23 +627,23 @@
 
                 if (dsid != undefined) {
                     // Special case with interactive mobilelistitem as a container
-                    var imli_cloning = component[0].tagName == "A" && component.parents().eq(1).is("[data-role='listview']");
+                    var imli_cloning = component[0].tagName == "A" && component.parents().eq(3).is("[data-role='listview']");
 
                     if (imli_cloning) {
-                        component = component.parents().eq(0);
+                        component = component.parents().eq(2);
                     }
                     var clonedComponent = that.__specialClone(component);
-                    component.before(clonedComponent);
+                    clonedComponent.appendTo(component.parent());
                     clonedComponent.show();
 
                     if (imli_cloning) {
-                        clonedComponent = clonedComponent.find("> a[dsid]");
+                        clonedComponent = clonedComponent.find("> div > div > a[dsid], > a[dsid]");
                     }
 
                     that.changeIds(clonedComponent, dsid, arrayIndex);
 
                     if (component.parent().parent().attr('data-role') === 'controlgroup') {
-                        clonedComponent.enhanceWithin();
+                        $.mobile.checkboxradio.prototype.enhanceWithin(clonedComponent);
                         // Fixing round borders for checkbox/radio
                         if (arrayIndex > 0) {
                             clonedComponent.find("label").removeClass("ui-first-child");
@@ -651,8 +651,8 @@
                         }
                     }
 
-                    if (component.find($.mobile.selectmenu.prototype.initSelector).length) {
-                        clonedComponent.find($.mobile.selectmenu.prototype.initSelector).selectmenu();
+                    if (component.find($.mobile.selectmenu.prototype.options.initSelector).length) {
+                        clonedComponent.find($.mobile.selectmenu.prototype.options.initSelector).selectmenu();
                     }
 
                     $.merge(clonedElements, clonedComponent);
@@ -687,17 +687,17 @@
                 this.__specialAtributesCopy(originalComponent, clonedComponent);
                 this.__specialAtributesCopy(originalComponent.children('div').children('label'), clonedComponent.children('label'));
                 this.__specialAtributesCopy(originalComponent.children('div').children('input'), clonedComponent.children('input'));
-                this.__specialChildrenCopy(originalComponent.children('div').children('label'), clonedComponent.children('label'));
-            } else if (originalComponent.children('select').attr('data-role') === 'flipswitch') {
+                this.__specialChildrenCopy(originalComponent.children('div').children('label').find('.ui-btn-text'), clonedComponent.children('label'));
+            } else if (originalComponent.children('select').attr('data-role') === 'slider') {
                 clonedComponent = $('<div><select/></div>');
                 this.__specialAtributesCopy(originalComponent, clonedComponent);
                 this.__specialAtributesCopy(originalComponent.children('select'), clonedComponent.children('select'));
                 this.__specialChildrenCopy(originalComponent.children('select'), clonedComponent.children('select'));
             } else if (originalComponent.attr('data-role') === 'fieldcontain' && originalComponent.children('div').hasClass('ui-select')) {
                 clonedComponent = $('<div><select></select></div>');
-                clonedComponent.children('select').html(originalComponent.find($.mobile.selectmenu.prototype.initSelector).html());
+                clonedComponent.children('select').html(originalComponent.find($.mobile.selectmenu.prototype.options.initSelector).html());
                 this.__specialAtributesCopy(originalComponent, clonedComponent);
-                this.__specialAtributesCopy(originalComponent.find($.mobile.selectmenu.prototype.initSelector), clonedComponent.children('select'));
+                this.__specialAtributesCopy(originalComponent.find($.mobile.selectmenu.prototype.options.initSelector), clonedComponent.children('select'));
             } else if (originalComponent.attr('data-role') === 'fieldcontain' && originalComponent.find('input').hasClass('ui-slider-input')) {
                 // slider
                 clonedComponent = $('<div><div><input/></div></div>');
@@ -741,9 +741,11 @@
                     var child = that.__specialClone(this);
                     clonedComponent.append(child);
 
-                    if (child.children('select').attr('data-role') === 'flipswitch') {
-                        child.flipswitch();
+                    if (child.attr('data-role') === 'controlgroup') {
+                        $.mobile.checkboxradio.prototype.enhanceWithin(child);
                     }
+                    if (child.children('select').attr('data-role') === 'slider')
+                        $.mobile.slider.prototype.enhanceWithin(child);
                 }
             });
         },
@@ -788,9 +790,9 @@
             }
 
             // Special case with interactive mobilelistitem as a container
-            if (components.length > 0 && components[0].tagName == "A" && components.eq(0).parents().eq(1).is("[data-role='listview']")) {
+            if (components.length > 0 && components[0].tagName == "A" && components.eq(0).parents().eq(3).is("[data-role='listview']")) {
                 components = components.map(function (ind, elt) {
-                    return $(elt).parents()[0];
+                    return $(elt).parents()[2];
                 });
             }
             if (components.length > 0) {
@@ -813,9 +815,9 @@
             }
 
             // Special case with interactive mobilelistitem as a container
-            if (components.length > 0 && components[0].tagName == "A" && components.eq(0).parents().eq(1).is("[data-role='listview']")) {
+            if (components.length > 0 && components[0].tagName == "A" && components.eq(0).parents().eq(3).is("[data-role='listview']")) {
                 components = components.map(function (idx, elt) {
-                    return $(elt).parents()[0];
+                    return $(elt).parents()[2];
                 });
             }
 
@@ -1362,8 +1364,8 @@
                         var c = $("#" + Apperyio.CurrentScreen + " [dsid=" + this.__responseMapping[i].ID + "]");
 
                         // Special case with interactive mobilelistitem as a container
-                        if (c.length > 0 && c[0].tagName == "A" && c.parents().eq(1).is("[data-role='listview']")) {
-                            c = c.parents().eq(0);
+                        if (c.length > 0 && c[0].tagName == "A" && c.parents().eq(3).is("[data-role='listview']")) {
+                            c = c.parents().eq(2);
                         }
 
                         if (c.length > 0) {
@@ -1383,23 +1385,18 @@
                                 c.css('display', display);
                             }
                             if (c[0].tagName == "OPTION" && c.val() != "") {
-
-                                // Array is mapped to existing select menu option
+                                //Array is mapped to existing select menu option
                                 var selectElement = c.parent();
                                 c.removeAttr("selected");
-
-                                // Change element DSID attribute to avoid cloning
-                                c.attr("dsid", this.__responseMapping[i].ID + "_orig");
+                                c.attr("dsid", this.__responseMapping[i].ID + "_orig"); //Change element DSID attribute to avoid cloning
                                 var reRenderer = c.attr("rerender");
-
-                                // Create new element to be cloned on mapping
-                                c = $('<option dsid="' + this.__responseMapping[i].ID
-                                    + '" style="display: none;" selected="selected" rerender="' + reRenderer + '"/>');
+                                //Create new element to be cloned on mapping
+                                c = $('<option dsid="' + this.__responseMapping[i].ID + '" style="display: none;" selected="selected" rerender="' + reRenderer + '"/>');
                                 selectElement.prepend(c).refresh();
                             }
                             if (c.attr('data-role') == "collapsible" && !c.hasClass('ui-collapsible-collapsed')) {
                                 c.attr("data-collapsed", "true");
-                                c.collapsible("collapse");
+                                c.trigger("collapse");
                             }
                             c.hide();
                         }
@@ -1504,9 +1501,7 @@
                 builder.visit(this.__requestMapping);
 
                 if (settings.allowDataModification == undefined || settings.allowDataModification == true) {
-                    if (!(Object.prototype.toString.call(settings.data) === '[object Array]' && $.isEmptyObject(builder.getParams()))) {
-                        settings.data = $.extend(builder.getParams(), settings.data || {});
-                    }
+                    settings.data = $.extend(builder.getParams(), settings.data || {});
                 }
                 settings.headers = $.extend(builder.getHeaders(), settings.headers || {});
 
@@ -1554,9 +1549,11 @@
      */
     Apperyio.GenericService = $a.createClass(null, /** @lends Apperyio.GenericService.prototype */ {
 
+
         init: function (requestOptions) {
             this.__requestOptions = $.extend({}, requestOptions);
         },
+
 
         process: function (settings) {
             settings.beforeSend(settings);
@@ -1789,7 +1786,7 @@
 
                     return isEncoded ? encodeURIComponent(paramValue) : paramValue;
                 }
-
+                
                 function __performParamSubstitution(str, param) {
                     var paramValue = settings.data[param] || settings.ssc_data[param] || settings.service_settings_data[param] || '{' + param + '}';
                     if (settings.substitutedParams.indexOf(param) == -1) settings.substitutedParams.push(param);
@@ -1917,11 +1914,21 @@
 
         convertPositionObject: function (position) {
             if (position) {
-                if (position.coords.timestamp) {
-                    // Mozilla browser position object
-                    position.timestamp = position.coords.timestamp;
+                if ($.browser.mozilla) {
+                    var convertedPosition = {};
+                    convertedPosition.coords = {};
+                    convertedPosition.coords.accuracy = position.coords.accuracy;
+                    convertedPosition.coords.altitude = position.coords.altitude;
+                    convertedPosition.coords.altitudeAccuracy = position.coords.altitudeAccuracy;
+                    convertedPosition.coords.heading = position.coords.heading;
+                    convertedPosition.coords.latitude = position.coords.latitude;
+                    convertedPosition.coords.longitude = position.coords.longitude;
+                    convertedPosition.coords.speed = position.coords.speed;
+                    convertedPosition.timestamp = position.coords.timestamp;
+                    return convertedPosition;
+                } else {
+                    return position;
                 }
-                return position;
             } else {
                 console.error("Apperyio.GeolocationService.convertPositionObject: Attempt to convert undefined position!");
                 return;
@@ -1951,7 +1958,6 @@
             } else {
                 settings.beforeSend(this.__requestOptions);
                 showSpinner();
-				settings.data.options.multiple = Boolean(settings.data.options.multiple);
                 navigator.contacts.find(settings.data.params.fields.split(' '),
                     function (contacts) {
                         settings.success(contacts);
@@ -1985,7 +1991,6 @@
                 settings.success(this.__requestOptions.echo);
                 settings.complete('success');
             } else {
-                settings.beforeSend(this.__requestOptions);
                 BarcodeScanner.scan(function (result) {
                         settings.success(JSON.stringify(result));
                         settings.complete('success');
@@ -2098,7 +2103,7 @@
         $a.createClass(null, /** @lends Apperyio.ApperyWrapper.prototype */ {
 
             init: function (componentId, options) {
-                this.__element = $("#"+Apperyio.CurrentScreen).find('[dsid="' + componentId + '"]:eq(0)');
+                this.__element = $("#" + Apperyio.CurrentScreen).find('[dsid="' + componentId + '"]:eq(0)');
                 this.__element.options = options;
             },
             setProperty: function (name, value) {
@@ -2227,20 +2232,20 @@
                     'center': mapCenter,
                     'zoom': this.options.zoom
                 }).bind('init', function (evt, map) {
-                        _that.gmap = map;
-                        _that.isInitialized = true;
-                        //_that.bindListeners.call(_that);
+                    _that.gmap = map;
+                    _that.isInitialized = true;
+                    //_that.bindListeners.call(_that);
 
-                        if (_that.delayOptions != null) {
-                            $.extend(_that.options, _that.delayOptions);
-                            _that.delayOptions = null;
-                            _that.refresh();
-                        } else {
-                            _that.renderMarkers();
-                        }
+                    if (_that.delayOptions != null) {
+                        $.extend(_that.options, _that.delayOptions);
+                        _that.delayOptions = null;
+                        _that.refresh();
+                    } else {
+                        _that.renderMarkers();
+                    }
 
 
-                    });
+                });
             },
             renderSpecifiedLocationMarker: function () {
                 //Setting specified location marker if enabled
@@ -2276,7 +2281,7 @@
                     this.options.mapElement.gmap("clear", "markers");
                     this.renderSpecifiedLocationMarker();
 
-                    $("#"+Apperyio.CurrentScreen).find("[dsid=" + this.options.markerSourceName + "] li").each(function (index) {
+                    $("#" + Apperyio.CurrentScreen).find("[dsid=" + this.options.markerSourceName + "] li").each(function (index) {
                         var isRenderedmarker = $(this).attr("rendered") ? $(this).attr("rendered") : "true";
                         var isTemplate = $(this).attr("_tmpl") ? $(this).attr("_tmpl") : "false";
 
@@ -2324,7 +2329,7 @@
                             }
                             $.each(_that.supportedMarkerEvents, function (index, event) {
                                 google.maps.event.addListener(marker, event, function () {
-                                    $("#"+Apperyio.CurrentScreen).find("#" + markerDomElemId).trigger(event, arguments);
+                                    $("#" + Apperyio.CurrentScreen).find("#" + markerDomElemId).trigger(event, arguments);
                                 });
                             });
                             //if marker address specified then geocode address
@@ -2381,7 +2386,7 @@
                             this.options[name] = value;
                         } else if (name == "visible") {
                             value = String(value);
-                            var el =  $(this.options.mapElement);
+                            var el = $(this.options.mapElement);
                             if (value == "true" || value == "visible") {
                                 $(this.options.mapElement).css("display", "block");
                             } else if (value == "false" || value == "hidden") {
@@ -2397,7 +2402,7 @@
                         this.delayOptions[name] = value;
                     } else if (name == "visible") {
                         value = String(value);
-                        var el =  $(this.options.mapElement);
+                        var el = $(this.options.mapElement);
                         if (value == "true" || value == "visible") {
                             $(this.options.mapElement).css("display", "block");
                         } else if (value == "false" || value == "hidden") {
@@ -2520,75 +2525,76 @@
 
             init: function (componentId, options) {
                 this.audio_selector = "#" + componentId;
-				this.autoplay = $(this.audio_selector).attr("autoplay") != undefined ? true : false;
-				this.audioPath = $(this.audio_selector).find("source:first").attr("src");
-				this.state = "stopped";
+                this.autoplay = $(this.audio_selector).attr("autoplay") != undefined ? true : false;
+                this.audioPath = $(this.audio_selector).find("source:first").attr("src");
+                this.state = "stopped";
 
-				if(this.isLocalAudio() && this.isAndroidPlatform()){
-				    console.log("this.isLocalAudio(): "+this.isLocalAudio()+" this.isAndroidPlatform(): "+this.isAndroidPlatform());
-				    var self = this;
-					document.addEventListener("deviceready",
-						function() {
-							self.initializeNativePlayer();
-						}
-						, false);
-				}
+                if (this.isLocalAudio() && this.isAndroidPlatform()) {
+                    console.log("this.isLocalAudio(): " + this.isLocalAudio() + " this.isAndroidPlatform(): " + this.isAndroidPlatform());
+                    var self = this;
+                    document.addEventListener("deviceready",
+                        function () {
+                            self.initializeNativePlayer();
+                        }
+                        , false);
+                }
             },
 
-			isLocalAudio : function(){
-				return !this.audioPath.indexOf("http") == 0;
-			},
+            isLocalAudio: function () {
+                return !this.audioPath.indexOf("http") == 0;
+            },
 
-			isAndroidPlatform : function(){
-				return Apperyio.getTargetPlatform() == "A";
-			},
+            isAndroidPlatform: function () {
+                return Apperyio.getTargetPlatform() == "A";
+            },
 
-			initializeNativePlayer  : function(){
-				console.log("initializeNativePlayer with: "+this.audioPath);
-				var androidLocalAssetsPath = "/android_asset/www/";
-				var audioPath = androidLocalAssetsPath + this.audioPath;
-				this.native_media = new Media(audioPath,
-            	    function () {
-            	        console.log("playAudio():Audio Success");
-            	    },
-            	    function (err) {
-            	        console.error("playAudio():Audio Error: " + err);
-            	    }
-            	);
+            initializeNativePlayer: function () {
+                console.log("initializeNativePlayer with: " + this.audioPath);
+                var androidLocalAssetsPath = "/android_asset/www/";
+                var audioPath = androidLocalAssetsPath + this.audioPath;
+                this.native_media = new Media(audioPath,
+                    function () {
+                        console.log("playAudio():Audio Success");
+                    },
+                    function (err) {
+                        console.error("playAudio():Audio Error: " + err);
+                    }
+                );
 
-				console.log("autoplay: "+this.autoplay);
-				if(this.autoplay){
-					this.native_media.play();
-					this.state = "playing";
-				}
-				this.bindUIEvents();
-			},
+                console.log("autoplay: " + this.autoplay);
+                if (this.autoplay) {
+                    this.native_media.play();
+                    this.state = "playing";
+                }
+                this.bindUIEvents();
+            },
 
-			bindUIEvents : function(){
-				console.log("Bind UI events");
-				var self = this;
-				$(this.audio_selector).unbind("tap").bind("tap",
-					function() {
-						self.onPlayButtonClick();
-					}
-				);
+            bindUIEvents: function () {
+                console.log("Bind UI events");
+                var self = this;
+                $(this.audio_selector).unbind("tap").bind("tap",
+                    function () {
+                        self.onPlayButtonClick();
+                    }
+                );
 
-			},
+            },
 
-			onPlayButtonClick : function(){
-				if(this.native_media != undefined){
-					if(this.state == "stopped"){
-						this.native_media.play();
-						this.state = "playing";
-					}else if(this.state == "playing"){
-						this.native_media.stop();
-						this.state = "stopped";
-					}
-				}else{
-					console.error("Phonegap Media player not ready!");
-				}
-			}
+            onPlayButtonClick: function () {
+                if (this.native_media != undefined) {
+                    if (this.state == "stopped") {
+                        this.native_media.play();
+                        this.state = "playing";
+                    } else if (this.state == "playing") {
+                        this.native_media.stop();
+                        this.state = "stopped";
+                    }
+                } else {
+                    console.error("Phonegap Media player not ready!");
+                }
+            }
         });
+
     /**
      * @class
      */
@@ -2616,12 +2622,11 @@
                         }
                     };
 
-                if (currentPage[0] == $("body").pagecontainer("getActivePage")[0]) {
+                if (jQuery.mobile.activePage && currentPage[0] == jQuery.mobile.activePage[0]) {
                     initCarouselWidget();
-                } else if(currentPage.parent()[0].tagName === "DIV") {
-                    currentPage.bind("tabletpagecontainershow", initCarouselWidget);
-                } else {
-                    currentPage.parent().bind("pagecontainershow", initCarouselWidget);
+                }
+                else {
+                    currentPage.bind("pageshow", initCarouselWidget);
                 }
             },
 
@@ -2705,7 +2710,7 @@
     /**
      * @class
      */
-	 Apperyio.ApperyMobileDatePickerComponent = $a.TiggziMobileDatePickerComponent = $a.TiggrMobileDatePickerComponent =
+    Apperyio.ApperyMobileDatePickerComponent = $a.TiggziMobileDatePickerComponent = $a.TiggrMobileDatePickerComponent =
         $a.createClass($a.ApperyWrapper, /** @lends Apperyio.ApperyMobileDatePickerComponent.prototype */ {
 
             init: function (componentId, options) {
@@ -2741,7 +2746,7 @@
                     });
 
                 // Register open calendar action
-                $(document).off("click", this.datepicker_openButtonSelector).on("click", this.datepicker_openButtonSelector, function () {
+                $(this.datepicker_openButtonSelector).die("click").live("click", function () {
                     _that.datepicker_dataPickerOptions.onSelect = function (dateText, inst) {
                         $(_that.datepicker_inputSelector).trigger("change");
                         /* see ETST-8518 */
@@ -2906,7 +2911,7 @@
         page = $(page);
 
         // It's OK with dialogue, we don't need extra sizing
-        if (page.is("[data-dialog='true']")) return;
+        if (page.is("[data-role='dialog']")) return;
 
         var header, footer, content;
 
@@ -3026,7 +3031,7 @@
                 tmpDivPage.addClass('ui-page detail-content');
                 tmpDivContent.addClass('ui-content');
 
-                tmpDivPage.enhanceWithin(); // ex trigger("create")
+                tmpDivPage.trigger("create");
                 window.primaryContentOnLoad.init = true;
             }
 
@@ -3039,8 +3044,8 @@
                 }
             });
 
-            tmpDiv.find("div[data-role=page]").css('position', 'static');
-            tmpDiv.find("div[data-role=page]").show();
+            tmpDivPage.css('position', 'static');
+            tmpDivPage.show();
 
             return tmpDivHeaderCaption;
         }
@@ -3074,10 +3079,7 @@
                 if (window.primaryContentOnLoad.init)
                     eval(window.primaryContentOnLoad.id + "_js()");
                 eval(window.primaryContentOnLoad.id + "_js(true)");
-                $("#" + window.primaryContentOnLoad.id).triggerHandler("pagecontainershow");
-                if($("#" + window.primaryContentOnLoad.id).parent()[0].tagName === "DIV"){
-                    $("#" + window.primaryContentOnLoad.id).triggerHandler("tabletpagecontainershow");
-                }
+                $("#" + window.primaryContentOnLoad.id).triggerHandler('pageshow');
                 window.primaryContentOnLoad = undefined;
             }
         }
@@ -3087,7 +3089,7 @@
      * Programmatically changes from one page to specified
      *
      * @param {string} outcome - page name
-     * @param {Object<String, Object>} options - exactly the same object as is required by pagecontainer change method
+     * @param {Object<String, Object>} options - exactly the same object as is required by jQuery.mobile.changePage method
      * @see The <a href="http://jquerymobile.com/test/docs/api/methods.html">JQM API methods</a>.
      */
     Apperyio.navigateTo = function (outcome, options) {
@@ -3142,12 +3144,11 @@
 
         for (var i = 0; i < this.AppPages.length; i++) {
             if (this.AppPages[i].name == outcome) {
-                // for WP7 only
                 prepareExternalPageResourcesIfNeeded(outcome);
                 if (options && typeof options == 'object') {
-                    $("body").pagecontainer("change", this.AppPages[i].location, options);
+                    $.mobile.changePage(this.AppPages[i].location, options);
                 } else {
-                    $("body").pagecontainer("change", this.AppPages[i].location);
+                    $.mobile.changePage(this.AppPages[i].location);
                 }
             }
         }
@@ -3189,38 +3190,38 @@
         var ctx;
         
         try {
-	        if (screen) {
-	            if (typeof screen == 'object') {
-	                ctx = $(screen);
-	            } else if (typeof screen == 'string') {
-	                ctx = $("#" + screen);
-	            }
-	        }
+            if (screen) {
+                if (typeof screen == 'object') {
+                    ctx = $(screen);
+                } else if (typeof screen == 'string') {
+                    ctx = $("#" + screen);
+                }
+            }
 
-	        if (!ctx) {
-	            ctx = $("body");
-	        }
+            if (!ctx) {
+                ctx = $("body");
+            }
 
-	        // JQM elements
-	        ctx.find("input[type='radio'], input[type='checkbox']").checkboxradio("refresh");
-	        ctx.find("input[data-type='range']").slider();
-	        ctx.find("select[data-role='flipswitch']").refresh();
-	        ctx.find("div.ui-select select").selectmenu('refresh');
-	        ctx.find("ul[data-role='listview']:not([_idx]), ol[data-role='listview']:not([_idx])").listview('refresh');
-	        var elements = ctx.find("div[data-role='collapsible-set']");
-	        elements.each(function (elementIdx) {
-	            var element = elements.eq(elementIdx);
-	            element.collapsibleset();
-	            element.find("div.ui-collapsible-content:not(:last)").removeClass('ui-corner-bottom');
-	            if (element.find("div.ui-collapsible-content:last").hasClass('ui-corner-bottom')) {
-	                element.find("a.ui-collapsible-heading-toggle:visible:first").addClass('ui-corner-top');
-	            }
-	            element.find("div[data-role=collapsible]:visible:first").addClass('ui-first-child');
-	        });
+            // JQM elements
+            ctx.find("input[type='radio'], input[type='checkbox']").checkboxradio("refresh");
+            ctx.find("input[data-type='range']").slider();
+            ctx.find("select[data-role='slider']").refresh();
+            ctx.find("div.ui-select select").selectmenu('refresh');
+            ctx.find("ul[data-role='listview']:not([_idx]), ol[data-role='listview']:not([_idx])").listview('refresh');
+            var elements = ctx.find("div[data-role='collapsible-set']");
+            elements.each(function (elementIdx) {
+                var element = elements.eq(elementIdx);
+                element.collapsibleset();
+                element.find("div.ui-collapsible-content:not(:last)").removeClass('ui-corner-bottom');
+                if (element.find("div.ui-collapsible-content:last").hasClass('ui-corner-bottom')) {
+                    element.find("a.ui-collapsible-heading-toggle:visible:first").addClass('ui-corner-top');
+                }
+                element.find("div[data-role=collapsible]:visible:first").addClass('ui-first-child');
+            });
 
-	        // html audio and video
-	        ctx.find("audio, video").load();
-	    } catch (e) {
+            // html audio and video
+            ctx.find("audio, video").load();
+        } catch (e) {
 //            console.error(e);
         }
     };
@@ -3296,10 +3297,12 @@
         if (element.prop("tagName") == 'A'
             && (el = element.parent())
             && (el = el.parent())
+            && (el = el.parent())
+            && (el = el.parent())
             && el.attr('data-role') == 'listview') {
-            return element.parent();
+            return element.parent().parent().parent();
         } else if (element.prop("tagName") == 'SELECT'
-            && element.attr('data-role') == 'flipswitch') {
+            && element.attr('data-role') == 'slider') {
             return element.parent();
         } else if (element.prop("tagName") == 'INPUT'
             && element.hasClass('ui-slider-input')) {
@@ -3330,9 +3333,6 @@
             } else {
 
                 el = getParentContainer(el);
-                if (this.attr('data-role') === 'flipswitch') {
-                    el = el.parent();
-                }
                 if (value == "true" || value == "visible") {
                     if (el.css('display') != "none") {
                         /* no need to show, it's already shown */
@@ -3372,7 +3372,7 @@
                 } else {
                     this.find('input[type=radio]:first').attr(attrName, value);
                 }
-            } else if (this.attr('data-role') === 'flipswitch' && attrName == 'value') {
+            } else if (this.attr('data-role') === 'slider' && attrName == 'value') {
                 var val;
                 var bool = false;
                 if (typeof value != "string") bool = Boolean(value)
@@ -3380,12 +3380,6 @@
                 val = bool ? "on" : "off";
                 this.val(val);
                 this.refresh();
-            } else if (this.attr('apperytype') === 'marker') {
-                this.attr(attrName, value);
-            } else if (this.prop && (this.prop('nodeName') === 'TEXTAREA') && (attrName == "value")) {
-                this.text(value);
-            } else if (this.prop && (this.prop('nodeName') === 'SELECT') && (attrName == "value")) {
-                this.val(value).refresh();
             } else if (this[0].tagName == "IFRAME" && this.data("youtube-player-object")) {
                 this.attr(attrName, value);
 				var	ytObj = this.data("youtube-player-object");
@@ -3399,9 +3393,6 @@
 					break;
 				}
             } else {
-                if (this[0].tagName == "INPUT") {
-                	this.prop(attrName, value);
-                }
                 this.attr(attrName, value);
                 if (this.attr("reRender") != undefined) {
                     if ($("[name='" + this.attr("reRender") + "']").size() > 0 &&
@@ -3424,16 +3415,18 @@
 
     $.fn.setText = function (str) {
         if (this.length > 0) {
-            if (this.children('.ui-radio').length)
-                this.find('.ui-btn').text(str)
+            if (this.attr('data-role') && this.attr('data-role') == 'button')
+                this.find('.ui-btn-text:first').text(str)
+            else if (this.children('.ui-radio').length)
+                this.find('.ui-btn-text:first').text(str)
             else if (this.children('.ui-checkbox').length)
-                this.find('.ui-btn').text(str)
+                this.find('.ui-btn-text:first').text(str)
             else if (this.hasClass('ui-collapsible-heading'))
-                this.find('.ui-collapsible-heading-toggle').text(str)
+                this.find('.ui-btn-text:first').text(str)
             else if (this[0].tagName == "OPTION") {
                 this.text(str)
             } else if ($(this.parents().get(2)).is('.ui-navbar')) {
-                this.text(str)
+                this.find('.ui-btn-text:first').text(str)
             } else {
                 this.html(String(str));
             }

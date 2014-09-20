@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>
+            payedDollPage
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link href="files/resources/lib/theme/jqm/jqm.css" rel="stylesheet" />
+        <link href="files/resources/lib/theme/gelato/gelato.css" rel="stylesheet" />
+        <link href="files/resources/lib/jquerymobile/1.3.2/jquery.mobile.structure-1.3.2.css"
+        rel="stylesheet" />
+        <script type="text/javascript" src="files/resources/lib/store/json2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquery/jquery-1.8.2.js">
+        </script>
+        <script type="text/javascript">
+                    $(document).bind("mobileinit", function()
+            {
+                if (navigator.userAgent.toLowerCase().indexOf("android") != -1)
+                {
+                    $.mobile.defaultPageTransition = 'none';
+                    $.mobile.defaultDialogTransition = 'none';
+                }
+                if (navigator.userAgent.toLowerCase().indexOf("msie") != -1)
+                {
+                    $.mobile.allowCrossDomainPages = true;
+                    $.support.cors = true;
+                }
+            });
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquerymobile/1.3.2/jquery.mobile-1.3.2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/js/mobilebase.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/event/customEventHandler.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/sha1.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/oauth.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/contexts.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jsonpath.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jquery.xml2json.min.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/appery.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/get_target_platform.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/cordova.js">
+        </script>
+        <link href="files/resources/css/mobilebase.css" rel="stylesheet" type="text/css"
+        />
+        <script type="text/javascript" src="files/views/assets/js/Upload.js">
+        </script>
+        <script type="text/javascript" src="files/views/assets/js/services/service.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/databaseUtils.js">
+        </script>
+    </head>
+    
+    <body>
+        <div data-role="page" style="min-height:480px;" dsid="payedDollPage" id="payedDollPage"
+        class="type-interior" data-theme="c" data-add-back-btn="false" data-back-btn-text="Back">
+            <!-- mobileheader -->
+            <div data-role="header" data-position="fixed" data-theme="c" name="mobileheader"
+            id="payedDollPage_mobileheader" class=' payedDollPage_mobileheader '>
+                <h1 dsid="mobileheader">
+                    Buy It?
+                </h1>
+            </div>
+            <!-- mobilecontainer1 -->
+            <div data-role="content" id="payedDollPage_mobilecontainer1" name="mobilecontainer1"
+            class=" payedDollPage_mobilecontainer1" dsid="mobilecontainer1" data-theme="c">
+                <link href="payedDollPage.css" rel="stylesheet" type="text/css" />
+                <script type="text/javascript" src="payedDollPage.js">
+                </script>
+                <!-- mobileimage_2 -->
+                <img class=" payedDollPage_mobileimage_2" src="files/resources/image/no-image.jpg"
+                id="payedDollPage_mobileimage_2" dsid="mobileimage_2" name="mobileimage_2" />
+                <!-- mobilelabel_3 -->
+                <div name="mobilelabel_3" id="payedDollPage_mobilelabel_3" dsid="mobilelabel_3"
+                data-role="appery_label" class=' payedDollPage_mobilelabel_3 '>
+                    Are you sure you want to buy this item?
+                </div>
+                <!-- mobilebutton_4 -->
+                <a data-role="button" name="mobilebutton_4" dsid="mobilebutton_4" class='  payedDollPage_mobilebutton_4'
+                id="payedDollPage_mobilebutton_4" data-corners="true" x-apple-data-detectors="false"
+                data-mini="false" data-theme="c" tabindex="2">
+                Yes! I'll go for it.
+                </a>
+                <!-- mobilebutton_5 -->
+                <a data-role="button" name="mobilebutton_5" dsid="mobilebutton_5" class='  payedDollPage_mobilebutton_5'
+                id="payedDollPage_mobilebutton_5" data-corners="true" x-apple-data-detectors="false"
+                data-mini="false" data-theme="c" tabindex="3">
+                No, I'll look for something else. 
+                </a>
+            </div>
+            <!-- mobilefooter -->
+            <div data-role="footer" data-position="fixed" class=" payedDollPage_mobilefooter"
+            name="mobilefooter" dsid="mobilefooter" id="payedDollPage_mobilefooter" data-theme="c">
+            </div>
+        </div>
+    </body>
+
+</html>

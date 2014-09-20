@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>
+            foodDetailPage
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link href="files/resources/lib/theme/jqm/jqm.css" rel="stylesheet" />
+        <link href="files/resources/lib/theme/gelato/gelato.css" rel="stylesheet" />
+        <link href="files/resources/lib/jquerymobile/1.3.2/jquery.mobile.structure-1.3.2.css"
+        rel="stylesheet" />
+        <script type="text/javascript" src="files/resources/lib/store/json2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquery/jquery-1.8.2.js">
+        </script>
+        <script type="text/javascript">
+                    $(document).bind("mobileinit", function()
+            {
+                if (navigator.userAgent.toLowerCase().indexOf("android") != -1)
+                {
+                    $.mobile.defaultPageTransition = 'none';
+                    $.mobile.defaultDialogTransition = 'none';
+                }
+                if (navigator.userAgent.toLowerCase().indexOf("msie") != -1)
+                {
+                    $.mobile.allowCrossDomainPages = true;
+                    $.support.cors = true;
+                }
+            });
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquerymobile/1.3.2/jquery.mobile-1.3.2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/js/mobilebase.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/event/customEventHandler.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/sha1.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/oauth.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/contexts.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jsonpath.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jquery.xml2json.min.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/appery.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/get_target_platform.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/cordova.js">
+        </script>
+        <link href="files/resources/css/mobilebase.css" rel="stylesheet" type="text/css"
+        />
+        <script type="text/javascript" src="files/views/assets/js/Upload.js">
+        </script>
+        <script type="text/javascript" src="files/views/assets/js/services/service.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/databaseUtils.js">
+        </script>
+    </head>
+    
+    <body>
+        <div data-role="page" style="min-height:480px;" dsid="foodDetailPage" id="foodDetailPage"
+        class="type-interior" data-theme="c" data-add-back-btn="false" data-back-btn-text="Back">
+            <!-- mobileheader -->
+            <div data-role="header" data-position="fixed" data-theme="c" name="mobileheader"
+            id="foodDetailPage_mobileheader" class=' foodDetailPage_mobileheader '>
+                <h1 dsid="mobileheader">
+                    Details
+                </h1>
+                <!-- backBtn -->
+                <a data-role="button" name="backBtn" dsid="backBtn" class='ui-btn-left   foodDetailPage_backBtn'
+                id="foodDetailPage_backBtn" data-corners="true" data-icon="arrow-l" data-iconpos="left"
+                x-apple-data-detectors="false" data-inline='true' data-mini='true' data-theme="c"
+                tabindex="2">
+                Back
+                </a>
+            </div>
+            <!-- mobilecontainer1 -->
+            <div data-role="content" id="foodDetailPage_mobilecontainer1" name="mobilecontainer1"
+            class=" foodDetailPage_mobilecontainer1" dsid="mobilecontainer1" data-theme="c">
+                <link href="foodDetailPage.css" rel="stylesheet" type="text/css" />
+                <script type="text/javascript" src="foodDetailPage.js">
+                </script>
+                <!-- mobileimage_1 -->
+                <img class=" foodDetailPage_mobileimage_1" src="files/resources/image/no-image.jpg"
+                id="foodDetailPage_mobileimage_1" dsid="mobileimage_1" name="mobileimage_1" />
+                <!-- spacer_21 -->
+                <div id="foodDetailPage_spacer_21" data-role="appery_spacer" dsid="spacer_21" class='mobilespacer foodDetailPage_spacer_21'>
+                </div>
+                <!-- itemLabel -->
+                <div name="itemLabel" id="foodDetailPage_itemLabel" dsid="itemLabel" data-role="appery_label"
+                class=' foodDetailPage_itemLabel '>
+                    Label
+                </div>
+                <!-- mobilegrid_6 -->
+                <div class="foodDetailPage_mobilegrid_6_wrapper" data-wrapper-for="mobilegrid_6">
+                    <table id="foodDetailPage_mobilegrid_6" class=" foodDetailPage_mobilegrid_6" dsid="mobilegrid_6"
+                    name="mobilegrid_6" cellpadding=0 cellspacing=0>
+                        <col style="width:212px;" />
+                        <col style="width:auto;" />
+                        <tr class="foodDetailPage_mobilegrid_6_row_0">
+                            <!-- mobilegridcell_7 -->
+                            <td id="foodDetailPage_mobilegridcell_7" name="mobilegridcell_7" class="foodDetailPage_mobilegridcell_7"
+                            colspan=1 rowspan=1>
+                                <div class="cell-wrapper">
+                                </div>
+                            </td>
+                            <!-- mobilegridcell_17 -->
+                            <td id="foodDetailPage_mobilegridcell_17" name="mobilegridcell_17" class="foodDetailPage_mobilegridcell_17"
+                            colspan=1 rowspan=1>
+                                <div class="cell-wrapper">
+                                    <!-- priceLabel -->
+                                    <div name="priceLabel" id="foodDetailPage_priceLabel" dsid="priceLabel" data-role="appery_label"
+                                    class=' foodDetailPage_priceLabel '>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- descriptionLabel -->
+                <div name="descriptionLabel" id="foodDetailPage_descriptionLabel" dsid="descriptionLabel"
+                data-role="appery_label" class=' foodDetailPage_descriptionLabel '>
+                </div>
+                <!-- toInput -->
+                <div data-role="fieldcontain" class="foodDetailPage_toInput ">
+                    <input type="text" name="toInput" dsid="toInput" value="elijah.evoke@gmail.com"
+                    placeholder="" id="foodDetailPage_toInput" multiple data-theme="c" class=' foodDetailPage_toInput '
+                    />
+                </div>
+                <!-- fromInput -->
+                <div data-role="fieldcontain" class="foodDetailPage_fromInput ">
+                    <input type="text" name="fromInput" dsid="fromInput" value="elijah.evoke@gmail.com"
+                    placeholder="" id="foodDetailPage_fromInput" multiple data-theme="c" class=' foodDetailPage_fromInput '
+                    />
+                </div>
+                <!-- subjectInput -->
+                <div data-role="fieldcontain" class="foodDetailPage_subjectInput ">
+                    <input type="text" name="subjectInput" dsid="subjectInput" value="DinnerBell Order Placed"
+                    placeholder="" id="foodDetailPage_subjectInput" multiple data-theme="c" class=' foodDetailPage_subjectInput '
+                    />
+                </div>
+                <!-- messageInput -->
+                <div data-role="fieldcontain" class="foodDetailPage_messageInput ">
+                    <input type="text" name="messageInput" dsid="messageInput" value="Order Details."
+                    placeholder="" id="foodDetailPage_messageInput" multiple data-theme="c" class=' foodDetailPage_messageInput '
+                    />
+                </div>
+                <!-- mobilebutton_20 -->
+                <a data-role="button" name="mobilebutton_20" dsid="mobilebutton_20" class='  foodDetailPage_mobilebutton_20'
+                id="foodDetailPage_mobilebutton_20" data-corners="true" x-apple-data-detectors="false"
+                data-mini="false" data-theme="c" tabindex="1">
+                Add to Cart
+                </a>
+            </div>
+        </div>
+    </body>
+
+</html>

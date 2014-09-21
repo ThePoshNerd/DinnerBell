@@ -135,7 +135,7 @@ foodDetailPage_js = function(runBeforeShow) { /* Object & array with components 
         }, {
             'PATH': ['appery-key'],
             'HEADER': true,
-            'ATTR': '1411261191237'
+            'ATTR': '1411261688197'
         }, {
             'PATH': ['appery-rest'],
             'HEADER': true,

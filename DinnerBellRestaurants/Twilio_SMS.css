@@ -1,0 +1,69 @@
+
+/* Define default spinner */
+.ui-icon-loading {
+	background: url("files/resources/lib/jquerymobile/1.4.2/images/ajax-loader.gif") repeat scroll 0 0 / 46px 46px transparent!important;
+}
+/* mobilecontainer1 */
+.ui-content.Twilio_SMS_mobilecontainer1 {
+	padding: 15px 15px 15px 15px;
+}
+/* mobilelabel4 */
+.Twilio_SMS_mobilelabel4 {
+	font-weight: normal;
+	margin: 4px 0px 4px 0px;
+	word-wrap: break-word;
+	white-space: normal;
+}
+/* mobilelabel5 */
+.Twilio_SMS_mobilelabel5 {
+	font-weight: normal;
+	margin: 4px 0px 4px 0px;
+	word-wrap: break-word;
+	white-space: normal;
+}
+/* mobilelabel1 */
+.Twilio_SMS_mobilelabel1 {
+	font-weight: normal;
+	margin: 4px 0px 4px 0px;
+	word-wrap: break-word;
+	white-space: normal;
+}
+/* message */
+.Twilio_SMS_message {
+	margin: 4px 0px 4px 0px;
+}
+/* mobilebutton1 */
+#Twilio_SMS_mobilebutton1 {
+
+}
+.ui-btn.Twilio_SMS_mobilebutton1 {
+	margin: 4px 5px 4px 5px;
+}
+/* errorMessage */
+.Twilio_SMS_errorMessage {
+	font-weight: normal;
+	margin: 4px 0px 4px 0px;
+	display: none;
+	word-wrap: break-word;
+	white-space: normal;
+}
+/* sentMessage */
+.Twilio_SMS_sentMessage {
+	font-weight: normal;
+	margin: 4px 0px 4px 0px;
+	display: none;
+	word-wrap: break-word;
+	white-space: normal;
+}
+/* to */
+.Twilio_SMS_to {
+	margin: 4px 0px 4px 0px;
+}
+/* from */
+.Twilio_SMS_from {
+	margin: 4px 0px 4px 0px;
+}
+/* mobilefooter1 */
+.Twilio_SMS_mobilefooter1 {
+	min-height:38px;
+}

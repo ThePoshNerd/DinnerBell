@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>
+            Twilio_SMS
+        </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <link href="files/resources/lib/theme/jqm/jqm.css" rel="stylesheet" />
+        <link href="files/resources/lib/theme/ios7/ios7.css" rel="stylesheet" />
+        <link href="files/resources/lib/jquerymobile/1.4.2/jquery.mobile.structure-1.4.2.css"
+        rel="stylesheet" />
+        <script type="text/javascript" src="files/resources/lib/store/json2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquery/jquery-1.9.1.js">
+        </script>
+        <script type="text/javascript">
+                    $(document).bind("mobileinit", function()
+            {
+                if (navigator.userAgent.toLowerCase().indexOf("android") != -1)
+                {
+                    $.mobile.defaultPageTransition = 'none';
+                    $.mobile.defaultDialogTransition = 'none';
+                }
+                if (navigator.userAgent.toLowerCase().indexOf("msie") != -1)
+                {
+                    $.mobile.allowCrossDomainPages = true;
+                    $.support.cors = true;
+                }
+            });
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquerymobile/1.4.2/jquery.mobile-1.4.2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/js/mobilebase.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/event/customEventHandler.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/sha1.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/oauth.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/contexts.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jsonpath.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jquery.xml2json.min.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/appery.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/get_target_platform.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/cordova.js">
+        </script>
+        <link href="files/resources/css/mobilebase.css" rel="stylesheet" type="text/css"
+        />
+        <script type="text/javascript" src="files/views/assets/js/services/service.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/databaseUtils.js">
+        </script>
+    </head>
+    
+    <body>
+        <div data-role="page" style="min-height:480px;" dsid="Twilio_SMS" id="Twilio_SMS"
+        class="type-interior" data-theme="a">
+            <!-- mobileheader1 -->
+            <div data-role="header" data-position="fixed" data-add-back-btn="false" data-back-btn-text="Back"
+            data-theme="a" name="mobileheader1" id="Twilio_SMS_mobileheader1" class="Twilio_SMS_mobileheader1">
+                <h1 dsid="mobileheader1">
+                    Twilio SMS App
+                </h1>
+            </div>
+            <!-- mobilecontainer1 -->
+            <div data-role="content" id="Twilio_SMS_mobilecontainer1" name="mobilecontainer1"
+            class="Twilio_SMS_mobilecontainer1 ui-content" dsid="mobilecontainer1" data-theme="a">
+                <link href="Twilio_SMS.css" rel="stylesheet" type="text/css" />
+                <script type="text/javascript" src="Twilio_SMS.js">
+                </script>
+                <!-- mobilelabel4 -->
+                <div name="mobilelabel4" id="Twilio_SMS_mobilelabel4" dsid="mobilelabel4" data-role="appery_label"
+                class="Twilio_SMS_mobilelabel4">
+                    To:
+                </div>
+                <!-- mobilelabel5 -->
+                <div name="mobilelabel5" id="Twilio_SMS_mobilelabel5" dsid="mobilelabel5" data-role="appery_label"
+                class="Twilio_SMS_mobilelabel5">
+                    From:
+                </div>
+                <!-- mobilelabel1 -->
+                <div name="mobilelabel1" id="Twilio_SMS_mobilelabel1" dsid="mobilelabel1" data-role="appery_label"
+                class="Twilio_SMS_mobilelabel1">
+                    Message:
+                </div>
+                <!-- message -->
+                <div data-role="fieldcontain" class="Twilio_SMS_message ">
+                    <textarea name="message" id="Twilio_SMS_message" tabindex="3" dsid="message" data-theme="a"
+                    placeholder="" class="Twilio_SMS_message">Your orange chicken is ready! Please pickup at the counter
+</textarea>
+                </div>
+                <!-- mobilebutton1 -->
+                <a data-role="button" name="mobilebutton1" dsid="mobilebutton1" class="Twilio_SMS_mobilebutton1"
+                id="Twilio_SMS_mobilebutton1" data-corners="true" data-icon="none" data-iconpos='nowhere'
+                data-theme="a" tabindex="4">
+                Send
+                </a>
+                <!-- errorMessage -->
+                <div name="errorMessage" id="Twilio_SMS_errorMessage" dsid="errorMessage" data-role="appery_label"
+                class="Twilio_SMS_errorMessage">
+                </div>
+                <!-- sentMessage -->
+                <div name="sentMessage" id="Twilio_SMS_sentMessage" dsid="sentMessage" data-role="appery_label"
+                class="Twilio_SMS_sentMessage">
+                </div>
+                <!-- to -->
+                <div data-role="fieldcontain" class="Twilio_SMS_to ">
+                    <input type="text" name="to" dsid="to" value="15109190929" placeholder="To:" id="Twilio_SMS_to"
+                    tabindex="1" multiple data-theme="a" class="Twilio_SMS_to" />
+                </div>
+                <!-- from -->
+                <div data-role="fieldcontain" class="Twilio_SMS_from ">
+                    <input type="text" name="from" dsid="from" value="16506845087" placeholder="From:"
+                    id="Twilio_SMS_from" tabindex="2" multiple data-theme="a" class="Twilio_SMS_from"
+                    />
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

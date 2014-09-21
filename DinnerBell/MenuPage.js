@@ -46,7 +46,6 @@ MenuPage_js = function(runBeforeShow) { /* Object & array with components "name-
         'mobilegrid_16': 'MenuPage_mobilegrid_16',
         'mobilegridcell_17': 'MenuPage_mobilegridcell_17',
         'titleLabel': 'MenuPage_titleLabel',
-        'mobileimage_40': 'MenuPage_mobileimage_40',
         'mobilegridcell_21': 'MenuPage_mobilegridcell_21',
         'priceLabel': 'MenuPage_priceLabel',
         'mobilegridcell_38': 'MenuPage_mobilegridcell_38',
@@ -102,10 +101,6 @@ MenuPage_js = function(runBeforeShow) { /* Object & array with components "name-
                 'PATH': ['FoodPrice'],
                 'ID': 'priceLabel',
                 'ATTR': '@'
-            }, {
-                'PATH': ['Images'],
-                'ID': 'mobileimage_40',
-                'ATTR': 'src'
             }, {
                 'PATH': ['_id'],
                 'ID': 'itemIDLabel',

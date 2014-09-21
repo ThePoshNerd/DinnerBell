@@ -73,6 +73,12 @@
 	margin: 4px 0px 4px 0px;
 	word-wrap: break-word;
 }
+/* mobileimage_40 */
+.MenuPage_mobileimage_40 {
+	margin: 4px 0px 4px 0px;
+	width: 100px; height: 100px;
+	display: block;
+}
 /* mobilegridcell_21 */
 .MenuPage_mobilegridcell_21 {
 	height:30px !important;

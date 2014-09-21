@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>
+            MenuPage
+        </title>
+        <script type="text/javascript" src="//sslstatic.wix.com/services/js-sdk/1.35.0/js/Wix.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link href="files/resources/lib/theme/jqm/jqm.css" rel="stylesheet" />
+        <link href="files/resources/lib/theme/gelato/gelato.css" rel="stylesheet" />
+        <link href="files/resources/lib/jquerymobile/1.3.2/jquery.mobile.structure-1.3.2.css"
+        rel="stylesheet" />
+        <script type="text/javascript" src="files/resources/lib/store/json2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquery/jquery-1.8.2.js">
+        </script>
+        <script type="text/javascript">
+                    $(document).bind("mobileinit", function()
+            {
+                if (navigator.userAgent.toLowerCase().indexOf("android") != -1)
+                {
+                    $.mobile.defaultPageTransition = 'none';
+                    $.mobile.defaultDialogTransition = 'none';
+                }
+                if (navigator.userAgent.toLowerCase().indexOf("msie") != -1)
+                {
+                    $.mobile.allowCrossDomainPages = true;
+                    $.support.cors = true;
+                }
+            });
+        </script>
+        <script type="text/javascript" src="files/resources/lib/jquerymobile/1.3.2/jquery.mobile-1.3.2.js">
+        </script>
+        <script type="text/javascript" src="files/resources/js/mobilebase.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/event/customEventHandler.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/sha1.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/oauth.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/contexts.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jsonpath.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/jquery.xml2json.min.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/appery.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/get_target_platform.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/cordova.js">
+        </script>
+        <link href="files/resources/css/mobilebase.css" rel="stylesheet" type="text/css"
+        />
+        <script type="text/javascript" src="files/views/assets/js/Upload.js">
+        </script>
+        <script type="text/javascript" src="files/views/assets/js/services/service.js">
+        </script>
+        <script type="text/javascript" src="files/resources/lib/base/databaseUtils.js">
+        </script>
+    </head>
+    
+    <body>
+        <div data-role="page" style="min-height:480px;" dsid="MenuPage" id="MenuPage" class="type-interior"
+        data-theme="a" data-add-back-btn="false" data-back-btn-text="Back">
+            <!-- mobileheader -->
+            <div data-role="header" data-position="fixed" data-theme="a" name="mobileheader"
+            id="MenuPage_mobileheader" class=' MenuPage_mobileheader '>
+                <h1 dsid="mobileheader">
+                    DinnerBell
+                </h1>
+            </div>
+            <!-- mobilecontainer1 -->
+            <div data-role="content" id="MenuPage_mobilecontainer1" name="mobilecontainer1"
+            class=" MenuPage_mobilecontainer1" dsid="mobilecontainer1" data-theme="a">
+                <link href="MenuPage.css" rel="stylesheet" type="text/css" />
+                <script type="text/javascript" src="MenuPage.js">
+                </script>
+                <!-- mobilelist_1 -->
+                <ul data-role="listview" id="MenuPage_mobilelist_1" class=' MenuPage_mobilelist_1 '
+                name="mobilelist_1" dsid="mobilelist_1" data-filter="true" data-filter-theme="a"
+                data-filter-placeholder="Search Menu..." data-theme="a" data-divider-theme="b" data-count-theme="b"
+                style="" data-split-icon="carat-r">
+                    <!-- MenuList -->
+                    <li onclick="" id="MenuPage_MenuList" name="MenuList" dsid="MenuList" data-icon="none"
+                    class=' MenuPage_MenuList '>
+                        <div class="ui-li-static-container" data-theme="a">
+                            <!-- itemIDLabel -->
+                            <div name="itemIDLabel" id="MenuPage_itemIDLabel" dsid="itemIDLabel" data-role="appery_label"
+                            class=' MenuPage_itemIDLabel '>
+                                Label
+                            </div>
+                            <!-- mobilegrid_16 -->
+                            <div class="MenuPage_mobilegrid_16_wrapper" data-wrapper-for="mobilegrid_16">
+                                <table id="MenuPage_mobilegrid_16" class=" MenuPage_mobilegrid_16" dsid="mobilegrid_16"
+                                name="mobilegrid_16" cellpadding=0 cellspacing=0>
+                                    <col style="width:128px;" />
+                                    <col style="width:64px;" />
+                                    <col style="width:30px;" />
+                                    <tr class="MenuPage_mobilegrid_16_row_0">
+                                        <!-- mobilegridcell_17 -->
+                                        <td id="MenuPage_mobilegridcell_17" name="mobilegridcell_17" class="MenuPage_mobilegridcell_17"
+                                        colspan=1 rowspan=1>
+                                            <div class="cell-wrapper">
+                                                <!-- titleLabel -->
+                                                <div name="titleLabel" id="MenuPage_titleLabel" dsid="titleLabel" data-role="appery_label"
+                                                class=' MenuPage_titleLabel '>
+                                                    Title
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!-- mobilegridcell_21 -->
+                                        <td id="MenuPage_mobilegridcell_21" name="mobilegridcell_21" class="MenuPage_mobilegridcell_21"
+                                        colspan=1 rowspan=1>
+                                            <div class="cell-wrapper">
+                                                <!-- priceLabel -->
+                                                <div name="priceLabel" id="MenuPage_priceLabel" dsid="priceLabel" data-role="appery_label"
+                                                class=' MenuPage_priceLabel '>
+                                                    Price
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!-- mobilegridcell_38 -->
+                                        <td id="MenuPage_mobilegridcell_38" name="mobilegridcell_38" class="MenuPage_mobilegridcell_38"
+                                        colspan=1 rowspan=1>
+                                            <div class="cell-wrapper">
+                                                <!-- mobilebutton_37 -->
+                                                <a data-role="button" name="mobilebutton_37" dsid="mobilebutton_37" class='  MenuPage_mobilebutton_37'
+                                                style='min-height:20px; ' id="MenuPage_mobilebutton_37" data-corners="true" data-icon="arrow-r"
+                                                data-iconpos="left" x-apple-data-detectors="false" data-mini="true" data-theme="a"
+                                                tabindex="8">
+                                                &nbsp;
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <span class="ui-icon ui-icon-none ui-icon-shadow extra">
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+
+</html>

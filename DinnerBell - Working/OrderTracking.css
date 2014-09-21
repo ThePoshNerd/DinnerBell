@@ -1,0 +1,57 @@
+
+/* Define default spinner */
+.ui-icon-loading {
+	background: url("files/resources/lib/jquerymobile/1.3.2/images/ajax-loader.gif") repeat scroll 0 0 / 46px 46px transparent!important;
+}
+/* mobilecontainer1 */
+.ui-content.OrderTracking_mobilecontainer1 {
+	padding: 15px 15px 15px 15px;
+}
+/* spacer_8 */
+.OrderTracking_spacer_8 {
+	width: 260px; height: 188px;
+	margin: 4px 0px 4px 0px;
+}
+/* foodStatus */
+.OrderTracking_foodStatus {
+	text-decoration: none; font-weight: bold; text-align: center; font-family: Helvetica; font-size: 26px;
+	margin: 4px 0px 4px 0px;
+	word-wrap: break-word;
+}
+/* orderLabel */
+.OrderTracking_orderLabel {
+	text-decoration: none; font-weight: bold; text-align: center; font-family: Helvetica; font-size: 20px;
+	margin: 4px 0px 4px 0px;
+	word-wrap: break-word;
+}
+/* mobilebutton2 */
+#OrderTracking_mobilebutton2 {
+
+}
+.ui-btn.OrderTracking_mobilebutton2 {
+	margin: 4px 5px 4px 5px;
+}
+/* toInput */
+.OrderTracking_toInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* fromInput */
+.OrderTracking_fromInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* subjectInput */
+.OrderTracking_subjectInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* textInput */
+.OrderTracking_textInput {
+	margin: 4px 0px 4px 0px;
+	display: none;
+}
+/* mobilefooter1 */
+.OrderTracking_mobilefooter1 {
+	min-height:38px;
+}
